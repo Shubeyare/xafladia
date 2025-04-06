@@ -5,10 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xafladia - Event Management</title>
+
+    <!-- Performance optimizations -->
+    <link rel="preload" href="/src/style.css" as="style">
+    <link rel="preload" href="/src/assets/logo.svg" as="image" type="image/svg+xml" fetchpriority="high">
+    <link rel="modulepreload" href="/src/main.ts">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Meta description for SEO -->
+    <meta name="description" content="Xafladia - Professional event management services for corporate events, weddings, and special occasions">
   </head>
   <body>
     <div id="app"></div>
