@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px; /* Add padding for fixed header */
+  }
+
+  body {
+    @apply font-sans bg-white text-gray-800;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold;
+  }
+}
+
+@layer components {
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent
+    rounded-md font-medium text-white shadow-sm transition duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-600 hover:bg-indigo-700;
+  }
+
+  .btn-secondary {
+    @apply bg-orange-500 hover:bg-orange-600;
+  }
+
+  .section {
+    @apply py-12 md:py-20;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-8 text-center;
+  }
+
+  /* Animation classes */
+  .animate-on-scroll {
+    transition: transform 1s, opacity 1s;
+    transform: translateY(50px);
+    opacity: 0;
+  }
+
+  .animate-on-scroll.show {
+    opacity: 1 !important;
+    transform: translateY(0);
+  }
+}
