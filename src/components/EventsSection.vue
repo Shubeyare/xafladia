@@ -6,68 +6,76 @@
         Join us at our exclusive upcoming events and experience the extraordinary
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll opacity-0">
-        <!-- Event 1 -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
-          <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-               alt="Tech Conference" class="w-full h-48 object-cover" />
-          <div class="p-6">
-            <div class="text-indigo-600 font-semibold mb-2">July 15, 2023</div>
-            <h3 class="text-xl font-bold mb-2">Annual Tech Conference</h3>
-            <p class="text-gray-600 mb-4">Connect with industry leaders and discover the latest innovations in technology.</p>
-            <div class="flex items-center text-gray-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span>San Francisco, CA</span>
-            </div>
-            <a href="#" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition duration-300">
-              Register Now
-            </a>
+      <!-- Desktop: Grid layout -->
+      <div class="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 animate-on-scroll opacity-0">
+        <!-- Event cards for desktop layout -->
+        <EventCard
+          image="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+          title="Annual Tech Conference"
+          date="July 15, 2023"
+          description="Connect with industry leaders and discover the latest innovations in technology."
+          location="San Francisco, CA"
+        />
+
+        <EventCard
+          image="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+          title="Summer Wedding Showcase"
+          date="August 20, 2023"
+          description="Explore the latest wedding trends and meet our experienced planning team."
+          location="Los Angeles, CA"
+        />
+
+        <EventCard
+          image="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+          title="Annual Charity Gala"
+          date="September 10, 2023"
+          description="Join us for an evening of elegance and giving back to the community."
+          location="New York, NY"
+        />
+      </div>
+
+      <!-- Mobile: Horizontal scrollable cards -->
+      <div class="md:hidden overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory animate-on-scroll opacity-0">
+        <div class="flex gap-4 min-w-max pl-2">
+          <!-- Event card 1 - Mobile version -->
+          <div class="w-80 flex-shrink-0 snap-center">
+            <EventCard
+              image="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              title="Annual Tech Conference"
+              date="July 15, 2023"
+              description="Connect with industry leaders and discover the latest innovations in technology."
+              location="San Francisco, CA"
+            />
+          </div>
+
+          <!-- Event card 2 - Mobile version -->
+          <div class="w-80 flex-shrink-0 snap-center">
+            <EventCard
+              image="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+              title="Summer Wedding Showcase"
+              date="August 20, 2023"
+              description="Explore the latest wedding trends and meet our experienced planning team."
+              location="Los Angeles, CA"
+            />
+          </div>
+
+          <!-- Event card 3 - Mobile version -->
+          <div class="w-80 flex-shrink-0 snap-center pr-2">
+            <EventCard
+              image="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+              title="Annual Charity Gala"
+              date="September 10, 2023"
+              description="Join us for an evening of elegance and giving back to the community."
+              location="New York, NY"
+            />
           </div>
         </div>
 
-        <!-- Event 2 -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
-               alt="Wedding Showcase" class="w-full h-48 object-cover" />
-          <div class="p-6">
-            <div class="text-indigo-600 font-semibold mb-2">August 20, 2023</div>
-            <h3 class="text-xl font-bold mb-2">Summer Wedding Showcase</h3>
-            <p class="text-gray-600 mb-4">Explore the latest wedding trends and meet our experienced planning team.</p>
-            <div class="flex items-center text-gray-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span>Los Angeles, CA</span>
-            </div>
-            <a href="#" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition duration-300">
-              Register Now
-            </a>
-          </div>
-        </div>
-
-        <!-- Event 3 -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:transform hover:scale-105">
-          <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
-               alt="Charity Gala" class="w-full h-48 object-cover" />
-          <div class="p-6">
-            <div class="text-indigo-600 font-semibold mb-2">September 10, 2023</div>
-            <h3 class="text-xl font-bold mb-2">Annual Charity Gala</h3>
-            <p class="text-gray-600 mb-4">Join us for an evening of elegance and giving back to the community.</p>
-            <div class="flex items-center text-gray-500 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span>New York, NY</span>
-            </div>
-            <a href="#" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-indigo-700 transition duration-300">
-              Register Now
-            </a>
-          </div>
+        <!-- Scroll indicator -->
+        <div class="flex justify-center mt-6 space-x-2">
+          <div class="w-2 h-2 rounded-full bg-indigo-600"></div>
+          <div class="w-2 h-2 rounded-full bg-gray-300"></div>
+          <div class="w-2 h-2 rounded-full bg-gray-300"></div>
         </div>
       </div>
     </div>
@@ -75,11 +83,54 @@
 </template>
 
 <script setup lang="ts">
-// Component-specific logic can go here
+import { onMounted, ref } from 'vue'
+import EventCard from './EventCard.vue'
+
+// Optional: Add functionality to track the active card in the scroll
+const activeCardIndex = ref(0)
+
+onMounted(() => {
+  // On mobile, we can add event listeners to track scroll position
+  if (window.innerWidth < 768) {
+    const scrollContainer = document.querySelector('.scrollbar-hide')
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', () => {
+        // This is a simple implementation - you might want to use
+        // Intersection Observer for more precise tracking
+        const scrollLeft = scrollContainer.scrollLeft
+        const cardWidth = 320 // Width of card + gap
+        activeCardIndex.value = Math.round(scrollLeft / cardWidth)
+
+        // Update scroll indicators
+        const indicators = document.querySelectorAll('.rounded-full')
+        indicators.forEach((indicator, index) => {
+          if (index === activeCardIndex.value) {
+            indicator.classList.remove('bg-gray-300')
+            indicator.classList.add('bg-indigo-600')
+          } else {
+            indicator.classList.remove('bg-indigo-600')
+            indicator.classList.add('bg-gray-300')
+          }
+        })
+      })
+    }
+  }
+})
 </script>
 
 <style scoped>
 .container {
   max-width: 1200px;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 </style>

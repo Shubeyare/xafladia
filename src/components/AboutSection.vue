@@ -56,7 +56,7 @@
           <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow animate-on-scroll opacity-0">
             <div class="h-64 overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1556157382-97eda2f9671e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1287&q=80"
+                src="https://plus.unsplash.com/premium_photo-1671656349322-41de944d259b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWFufGVufDB8fDB8fHww"
                 alt="Marcus Chen"
                 class="w-full h-full object-cover object-center transition-transform hover:scale-105 duration-500"
               />
