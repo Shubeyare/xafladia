@@ -62,7 +62,7 @@
               />
             </div>
             <div class="p-6">
-              <h4 class="text-xl font-bold mb-1">Marcus Chen</h4>
+              <h4 class="text-xl font-bold mb-1">Abdishakur Shube</h4>
               <div class="text-indigo-600 font-medium mb-3">Event Planning Manager</div>
               <p class="text-gray-600">Marcus excels at logistics and coordination, ensuring that every event runs smoothly from planning through execution.</p>
             </div>
