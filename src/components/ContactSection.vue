@@ -58,9 +58,9 @@
                 <div class="ml-4">
                   <h4 class="text-lg font-medium text-gray-900">Address</h4>
                   <p class="text-gray-600">
-                    123 Event Avenue<br />
-                    Suite 500<br />
-                    Los Angeles, CA 90001
+                    Garo'e<br />
+                    Sodonka<br />
+                    Naasa-hablood
                   </p>
                 </div>
               </div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="ml-4">
                   <h4 class="text-lg font-medium text-gray-900">Phone</h4>
-                  <p class="text-gray-600">(123) 456-7890</p>
+                  <p class="text-gray-600">(907) 7116-8290</p>
                 </div>
               </div>
 
