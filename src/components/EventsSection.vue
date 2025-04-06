@@ -38,14 +38,15 @@
       <div class="md:hidden relative animate-on-scroll opacity-0">
         <div
           ref="mobileCarousel"
-          class="overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory scroll-smooth"
+          class="overflow-x-auto pb-8 scrollbar-hide snap-x snap-mandatory carousel-container"
           @touchstart="handleTouchStart"
+          @touchmove="handleTouchMove"
           @touchend="handleTouchEnd"
           @scroll="handleScrollThrottled"
         >
-          <div class="flex gap-4 min-w-max pl-2">
+          <div class="flex gap-6 pl-2 pr-2">
             <!-- Event card 1 - Mobile version -->
-            <div class="w-80 flex-shrink-0 snap-center">
+            <div class="w-[280px] flex-shrink-0 snap-center transition-transform event-card" :id="`event-card-0`">
               <EventCard
                 image="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
                 title="Annual Tech Conference"
@@ -56,7 +57,7 @@
             </div>
 
             <!-- Event card 2 - Mobile version -->
-            <div class="w-80 flex-shrink-0 snap-center">
+            <div class="w-[280px] flex-shrink-0 snap-center transition-transform event-card" :id="`event-card-1`">
               <EventCard
                 image="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
                 title="Summer Wedding Showcase"
@@ -67,7 +68,7 @@
             </div>
 
             <!-- Event card 3 - Mobile version -->
-            <div class="w-80 flex-shrink-0 snap-center pr-2">
+            <div class="w-[280px] flex-shrink-0 snap-center transition-transform event-card" :id="`event-card-2`">
               <EventCard
                 image="https://images.unsplash.com/photo-1511578314322-379afb476865?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
                 title="Annual Charity Gala"
@@ -80,7 +81,7 @@
         </div>
 
         <!-- Scroll indicator dots -->
-        <div class="flex justify-center mt-4 space-x-2">
+        <div class="flex justify-center mt-4 space-x-3">
           <div
             v-for="(_, index) in 3"
             :key="index"
@@ -104,14 +105,21 @@ const activeCardIndex = ref(0)
 const mobileCarousel = ref<HTMLElement | null>(null)
 let touchStartX = 0
 let touchEndX = 0
+let isTouching = false
+let scrollTimeout: number | null = null
 const totalCards = 3
+
+// Card dimensions
+const cardWidth = 280
+const cardGap = 24 // 6 in tailwind = 1.5rem = 24px
+const cardTotal = cardWidth + cardGap
 
 // Create a throttled scroll handler
 const handleScrollThrottled = throttle(updateActiveIndex, 100)
 
 // Function to update active index based on scroll position
 function updateActiveIndex() {
-  if (!mobileCarousel.value) return
+  if (!mobileCarousel.value || isTouching) return
 
   const scrollLeft = mobileCarousel.value.scrollLeft
   const newIndex = calculateCardIndex(scrollLeft)
@@ -120,26 +128,50 @@ function updateActiveIndex() {
   if (newIndex !== activeCardIndex.value) {
     activeCardIndex.value = newIndex
   }
+
+  // Clear any existing timeout
+  if (scrollTimeout) {
+    window.clearTimeout(scrollTimeout)
+  }
+
+  // Set timeout to snap to nearest card when scrolling stops
+  scrollTimeout = window.setTimeout(() => {
+    if (!isTouching) {
+      snapToNearestCard()
+    }
+  }, 150)
 }
 
 // Function to calculate current index from scroll position
 function calculateCardIndex(scrollLeft: number): number {
-  const cardWidth = 320 // Width of card + gap
-  return Math.round(scrollLeft / cardWidth)
+  return Math.round(scrollLeft / cardTotal)
+}
+
+// Function to snap to the nearest card
+function snapToNearestCard() {
+  if (!mobileCarousel.value) return
+
+  const scrollLeft = mobileCarousel.value.scrollLeft
+  const nearestCardIndex = Math.round(scrollLeft / cardTotal)
+
+  // Snap to the nearest card
+  scrollToCard(nearestCardIndex)
 }
 
 // Function to scroll to a specific card
 function scrollToCard(index: number) {
   if (!mobileCarousel.value) return
 
-  const cardWidth = 320 // card width + gap
+  // Ensure index is within bounds
+  const boundedIndex = Math.max(0, Math.min(index, totalCards - 1))
+
   mobileCarousel.value.scrollTo({
-    left: index * cardWidth,
+    left: boundedIndex * cardTotal,
     behavior: 'smooth'
   })
 
   // Update active index immediately for better UX
-  activeCardIndex.value = index
+  activeCardIndex.value = boundedIndex
 }
 
 // Navigate to the previous card
@@ -159,11 +191,28 @@ function nextCard() {
 // Touch event handlers for improved mobile swiping
 function handleTouchStart(e: TouchEvent) {
   touchStartX = e.changedTouches[0].screenX
+  isTouching = true
+
+  // Clear any snap timeout when user starts touching
+  if (scrollTimeout) {
+    window.clearTimeout(scrollTimeout)
+    scrollTimeout = null
+  }
+}
+
+function handleTouchMove(e: TouchEvent) {
+  // We don't prevent default here to allow native scrolling
+  // But we can detect the current touch position for later use
+  touchEndX = e.changedTouches[0].screenX
 }
 
 function handleTouchEnd(e: TouchEvent) {
   touchEndX = e.changedTouches[0].screenX
+  isTouching = false
   handleSwipe()
+
+  // Set a timeout to ensure we snap to the nearest card
+  setTimeout(snapToNearestCard, 50)
 }
 
 function handleSwipe() {
@@ -209,7 +258,7 @@ onMounted(() => {
       setTimeout(() => {
         // Set initial scroll position based on active index
         scrollToCard(0)
-      }, 100)
+      }, 150)
 
       // Set up keyboard navigation for accessibility
       window.addEventListener('keydown', handleKeyboardNav)
@@ -221,6 +270,11 @@ onMounted(() => {
 onBeforeUnmount(() => {
   // Remove keyboard event listener
   window.removeEventListener('keydown', handleKeyboardNav)
+
+  // Clear any pending timeouts
+  if (scrollTimeout) {
+    window.clearTimeout(scrollTimeout)
+  }
 })
 </script>
 
@@ -240,8 +294,21 @@ onBeforeUnmount(() => {
   scrollbar-width: none;  /* Firefox */
 }
 
-/* Ensure smooth scrolling */
-.scroll-smooth {
+/* Enhanced carousel styling */
+.carousel-container {
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+  overscroll-behavior-x: contain; /* Prevent back/forward navigation on some browsers */
+}
+
+.event-card {
+  scroll-snap-align: center;
+  transform: scale(0.98);
+  transition: transform 0.3s ease;
+}
+
+.event-card:hover {
+  transform: scale(1);
 }
 </style>
